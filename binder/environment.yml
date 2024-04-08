@@ -3,9 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python==3.10.13=he1021f5_0
-  - anaconda-client==1.11.1=py310haa95532_0
-  - anaconda-project==0.11.1=py310haa95532_0
   - jupyter
   - numpy
   - pandas
@@ -14,6 +11,5 @@ dependencies:
   - scikit-learn
   - statsmodels
   - plotly
-  - conda-forge::imbalanced-learn
   - conda-forge::pandoc
 prefix: C:\ProgramData\anaconda3\envs\env_strokepred
