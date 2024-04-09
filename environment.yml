@@ -1,0 +1,15 @@
+name: base
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - jupyter
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - statsmodels
+  - plotly
+  - conda-forge::pandoc
+prefix: C:\ProgramData\anaconda3\envs\env_strokepred
