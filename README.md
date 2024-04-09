@@ -86,8 +86,9 @@ gender, age, various diseases, and smoking status. Each row in the data provides
   1     249
   Name: count, dtype: int64
   ```
+  ![Screenshot for the dataset imbalance](./images/stroke_structure.png)
   
-  There more unstroked people than stroked ones. The 5110 observations are not much enough to have a balanced dataset
+  There are more unstroked people than stroked ones. The 5110 observations are not much enough to have a balanced dataset
   
   The column **"id"** will be used as the dataset row indexes and not as a pure explanatory variable.
   It remains then 10 variables for data analysis.
@@ -111,7 +112,8 @@ smoking_status         0
 stroke                 0
 dtype: int64
 ```
-Within the 201observations are 
+Among the 201 observations, there are **40 strokes**, so these observations cannot be removed because of the small number of people who suffered a stroke in the entire dataset.
+Their **""bmi"** will be imputed with the dataset stroked observations bmi mean and the rest 161 will have their bmi imputed with the dataset unstroked people bmi mean.
 
 ### Categorical Features Analysis
 ### Numerical Features Analysis
