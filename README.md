@@ -93,7 +93,9 @@ gender, age, various diseases, and smoking status. Each row in the data provides
   The column **"id"** will be used as the dataset row indexes and not as a pure explanatory variable.
   It remains then 10 variables for data analysis.
   
-  The dataset has a single row with **"gender"** column label **"Other"**. This line will be deleted as it could not have a significant impact on the entire dataset.
+  The dataset has a single row with **"gender"** column label **"Other"**. 
+  This line will be deleted as it could not have a significant impact on the entire dataset.
+  The **dataset size** will then be **5109**
 
   The column **"bmi"** has missing data for 201 observations:
   ```
@@ -116,7 +118,27 @@ Among the 201 observations, there are **40 strokes**, so these observations cann
 Their **""bmi"** will be imputed with the dataset stroked observations bmi mean and the rest 161 will have their bmi imputed with the dataset unstroked people bmi mean.
 
 ### Categorical Features Analysis
+All the categorical features are unbalanced data exactly like for **"stroke"** above.
+There more unstroked people than stroked per lable:
+
+Ordinal feature example:
+
+  ![Screenshot for categorical features imbalance](./images/hypertension.png)
+
+Nominal feature example:
+
+  ![Screenshot for the dataset imbalance](./images/work_type.png)
+  
 ### Numerical Features Analysis
+Apart from the feature **"age"** which is a balanced one all the remaining numerical features are imbalance.
+Here are some of their characteristics:
+
+* **Age**:
+* ![Screenshot for numerical features imbalance](./images/age_hist.png)
+* **avg_glucose_level**:
+* ![Screenshot for numerical features imbalance](./images/avg_glucose_level.png)
+* **bmi**:
+* ![Screenshot for numerical features imbalance](./images/bmi.png)
 
 ## Feature Engineering and Selection
 The relationship between explanatory variables will be studied in order to choose uncorrelated features for the final explanatory variables.
