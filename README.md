@@ -119,7 +119,7 @@ Their **""bmi"** will be imputed with the dataset stroked observations bmi mean 
 
 ### Categorical Features Analysis
 All the categorical features are unbalanced data exactly like for **"stroke"** above.
-There more unstroked people than stroked per lable:
+There more unstroked people than stroked per lable and will lead model to predict within unstroked observations:
 
 Ordinal feature example:
 
@@ -134,17 +134,71 @@ Apart from the feature **"age"** which is a balanced one all the remaining numer
 Here are some of their characteristics:
 
 * **Age**:
-* ![Screenshot for numerical features imbalance](./images/age_hist.png)
-* **avg_glucose_level**:
-* ![Screenshot for numerical features imbalance](./images/avg_glucose_level.png)
-* **bmi**:
-* ![Screenshot for numerical features imbalance](./images/bmi.png)
+ ![Screenshot for numerical features imbalance](./images/age_boxplot.png)
+  
+* **avg_glucose_level**: have outliers and a second mode in outliers above the maximum limit of glucose level average **125**.
+  This could be due to the small size of the dataset and will have negative impact on predictions.
+  The model is likely to predict within unstroked observations
+ ![Screenshot for numerical features imbalance](./images/avg_glucose_level.png)
+  
+* **bmi**: Have many outliers too
+  This could be due to the small size of the dataset and will have negative impact on predictions.
+  Here too, he model is likely to predict within unstroked observations
+ ![Screenshot for numerical features imbalance](./images/bmi_boxplot.png)
 
 ## Feature Engineering and Selection
-The relationship between explanatory variables will be studied in order to choose uncorrelated features for the final explanatory variables.
-On the second step the impact of explanatory variables on the target variable will be check to assure that those variables will be able to predict a stroke event.
+The nominal categorical features were normalized in ordinal to allow correlations study.
 
-  #### Final feature selection:
+### Target and Explanatory features correlation study:
+Pandas function **corr()** uses Pearson process which requires numerical variables.
+As nominal categorical variables were normalized in ordinal pd.corr() is used to an overview on the relationship between all the features.
+![Screenshot for features correlation](./images/corr_plot.png)
+
+Then adequate statistic tests were used to qualify features relationship as it follows:
+
+* Correlation between numerical variable with Pearson statistic test with **pd.corr()**
+  
+* Correlation between categorical variables with **Chi2 statistic test** with **chi2_contingency() function**:
+  ```
+  chi2CorrTest(df_transf["hypertension"],df_transf["stroke"])
+
+  Chi2 Test P_value: 1.688936253410575e-19
+  1
+  These features are ' correlated' as ''P_value'' < 0.05
+  ```
+* Correlation between numerical and categorical variables with **ANOVA test** through **"SelectKBest" class**:
+  ```
+  #import statsmodels.api
+  resulta=statsmodels.formula.api.ols('age~work_type',data=df_transf).fit()  
+  corrAgeWorkType=statsmodels.api.stats.anova_lm(resulta)
+  corrAgeWorkType
+
+  	        df	    sum_sq	       mean_sq	    F	         PR(>F)
+  work_type	4.0   	1.215328e+06	303831.964265	1110.246464	0.0
+  Residual	5104.0	1.396769e+06	273.661727	  NaN	        NaN
+
+
+  #import statsmodels.api
+  resulta=statsmodels.formula.api.ols('age~ever_married',data=df_transf).fit() 
+  corrAgeWorkType=statsmodels.api.stats.anova_lm(resulta)
+  corrAgeWorkType
+
+                df	    sum_sq	      mean_sq	      F	          PR(>F)
+  ever_married	1.0	    1.204583e+06	1.204583e+06	4370.69022	0.0
+  Residual	    5107.0	1.407514e+06	2.756048e+02	NaN	        NaN
+
+  ```
+
+**Partial conclusion:**
+above P-values (0.0 < 0.05) confirm correlations between "age" and "ever_married" and "work_type"; but as pd.corr() 
+has previously proved the correlation coefficient of "age" and "ever_married" is high, implying a strong relationship between both. 
+So to avoid data redundancy a choice might be made between "age" and "ever_married".
+
+Finally we noticed that only 4 explanatory features -**age,hypertension,heart_disease,avg_glucose_level**- 
+have significant correlation with the target feature **"stroke"**.
+
+
+#### Final features selection:
 
 For this study 2 models will be tested fondamentally based on the use of pd.corr() and SelectKBest():
 - Model1: Stroke~age,hypertension,heart_disease,avg_glucose_level (By prefering **age** and leaving out **ever_married** strongly correlated)
