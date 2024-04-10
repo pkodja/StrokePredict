@@ -8,6 +8,8 @@
 
 > Work sharing: [My Stroke Predict Analyses & Models](https://mybinder.org/v2/gh/pkodja/StrokePredict.git/main?labpath=Models%2Fstrokepred.ipynb)
 > 
+> Github: https://github.com/pkodja/StrokePredict/tree/main
+> 
 > Coding environment: **CONDA VIRTUAL ENVIRONMENT**
 ------------------------------------------------------------------
 
