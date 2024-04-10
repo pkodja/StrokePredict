@@ -277,7 +277,7 @@ After model training performance, the **Model1: Stroke ~ age,hypertension,heart_
 
 ####  outliers Handling
 Among the selected features there is **"avg_glucose_level"** feature with outliers.
-Those outliers -observations- was removed and their positive effects are shwon below in the model evaluation.
+Those outliers -observations- was removed and their positive effects are shown below in the model evaluation.
 
 * avg_glucose_level data status before outliers cancelling:
   
