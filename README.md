@@ -7,6 +7,8 @@
 > ##### Period: March - April 2024
 
 > Work sharing: [My Stroke Predict Analyses & Models](https://mybinder.org/v2/gh/pkodja/StrokePredict.git/main?labpath=Models%2Fstrokepred.ipynb)
+> 
+> Coding environment: **CONDA VIRTUAL ENVIRONMENT**
 ------------------------------------------------------------------
 
 # Stroke Prediction Dataset
